@@ -12,7 +12,7 @@ function DetailKategori() {
     //const dispatch = useDispatch(); 
     const [dataState, setDataState] = useState([]);
     useEffect(() => {
-        axios.get(`http://localhost:8080/pos/api/detailproduct/${paramId}`).then((response) => {
+        axios.get(`http://localhost:8080/pos/api/category/${paramId}`).then((response) => {
             console.log(response.data);
             setDataState(response.data);
         }).catch((error) => { console.log(error); });
@@ -31,7 +31,7 @@ function DetailKategori() {
                             <td>ID: </td> <td>{dataState.id}</td>
                         </tr>
                         <tr>
-                            <td>Nama:</td> <td>{dataState.title}</td>
+                            <td>Nama:</td> <td>{dataState.name}</td>
                         </tr>
                         <tr>
                             <td>Jumlah Produk:</td> <td>{0}</td>

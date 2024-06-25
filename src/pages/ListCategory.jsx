@@ -24,7 +24,7 @@ const DisplayData = dataState.map(
             <tr className="border-b text-center" key={info.id}>
                 <td className="p-4">{info.id}</td>
                 <td className="min-w-24">{info.name}</td>
-                <td className="min-w-24"><button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2">Detail</button><button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2">Edit</button><button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2">Delete</button></td>
+                <td className="min-w-24"><Link to={`/detailkategori/${info.id}`}><button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2">Detail</button></Link><button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2">Edit</button><button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2">Delete</button></td>
             </tr>
         )
     }
