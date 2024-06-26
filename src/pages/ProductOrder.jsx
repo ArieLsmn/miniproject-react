@@ -71,7 +71,7 @@ function ProductOrder() {
               <option value="id">Id</option>
             <option value="title">Name</option>
             <option value="price">Price</option>
-            <option value="category_id">Category</option>
+            <option value="categoryId">Category</option>
           </select>
 
 
