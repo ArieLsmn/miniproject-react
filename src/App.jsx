@@ -17,6 +17,8 @@ import ListProduct from './pages/ListProduct'
 import ListCategory from './pages/ListCategory'
 import DetailProduk from './pages/DetailProduk'
 import DetailKategori from './pages/DetailKategori'
+import ProductForm from './pages/ProductForm'
+import CategoryForm from './pages/CategoryForm'
 
 
 function App() {
@@ -31,8 +33,10 @@ function App() {
         <Route path="/transaksidetail" element={<DetailTransaksi />} />
         <Route path="/listproduk" element={<ListProduct />} />
         <Route path="/detailproduk/:paramId" element={<DetailProduk />} />
+        <Route path="/formproduk/" element={<ProductForm />} />
         <Route path="/listkategori" element={<ListCategory />} />
         <Route path="/detailkategori/:paramId" element={<DetailKategori />} />
+        <Route path="/formkategori" element={<CategoryForm />} />
         
       </Routes>
     </BrowserRouter>

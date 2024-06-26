@@ -15,7 +15,7 @@ function OrderList() {
   const [payState, setPayState] = useState(0);
 
   let cartItems = items;
-
+  console.log(cartItems);
   let totalPrice = 0;
   if (cartItems !== undefined && cartItems.length > 0) {
     cartItems.forEach(element => {
@@ -24,10 +24,38 @@ function OrderList() {
     });
   }
 
-  function handleClearCart() {
 
-    dispatch(clearCart());
-  }
+  let orders=[];
+
+  cartItems.forEach(element => {
+    let order=
+    {
+      product_id:element.product.id,
+      quantity:element.quantity,
+      subtotal:element.quantity*(element.product.price-1000)
+    };
+    orders.push(order);
+  });
+  console.log(orders);
+  const onSubmitForm = () => {
+    let today=new Date().toJSON().slice(0,10);
+    let data=
+    {
+      transaction_date:today,
+      total_amount:totalPrice,
+      total_pay:parseInt(payState),
+      transaction_details:orders
+    };
+    console.log(data);
+    axios.post("http://localhost:8080/pos/api/addtransaction", data).then(() => {
+      console.log("data");
+      alert(data.total_pay);
+      reset();
+    })
+      .catch((error) => {
+        console.log("Error", error);
+      });
+  };
   
   function onPayChange(value){
     setPayState(value);
@@ -123,7 +151,9 @@ function OrderList() {
           Total Pembayaran
           <input className="border-2 border-black" type="number" id="payment" name="payment" onChange={e => onPayChange(e.target.value)}></input>
           Kembalian: {(payState>totalPrice) ?(payState-totalPrice):0}
+          
           <button className="px-4 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
+          onClick={()=>{onSubmitForm()}}
           >Buat Pesanan</button>
         </div>
       </div>
