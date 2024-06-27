@@ -5,17 +5,24 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import { useDispatch, useSelector } from "react-redux"
+import { data } from 'autoprefixer';
 
 
 function ListCategory() {
 
     const [dataState, setDataState] = useState([]);
+    const [rerenderState, setRerender] = useState(false);
     useEffect(() => {
         axios.get('http://localhost:8080/pos/api/listcategory').then((response) => {
             console.log(response.data);
             setDataState(response.data);
         }).catch((error) => { console.log(error); });
     }, []);
+
+    function handleDelete(id){
+        axios.delete(`http://localhost:8080/pos/api/deletecategory/${id}`);
+    }
+
 
     const DisplayData = dataState.map(
         (info) => {
@@ -24,8 +31,16 @@ function ListCategory() {
                 <tr className="border-b text-center" key={info.id}>
                     <td className="p-4">{info.id}</td>
                     <td className="min-w-24">{info.name}</td>
-                    <td className="min-w-24">{0}</td>
-                    <td className="min-w-24"><Link to={`/detailkategori/${info.id}`}><button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2">Detail</button></Link><button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2">Edit</button><button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2">Delete</button></td>
+                    <td className="min-w-24">{info.product_count}</td>
+                    <td className="min-w-24"><Link to={`/detailkategori/${info.id}`}><button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2">Detail</button></Link>
+                    
+                    <Link to={`/updatekategori/${info.id}`}>
+                    <button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2"
+                    >Edit</button></Link>
+                    <button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2"
+                    onClick={()=>{handleDelete(info.id)}}
+                    >Delete</button>
+                    </td>
                 </tr>
             )
         }

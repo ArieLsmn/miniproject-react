@@ -48,8 +48,10 @@ function OrderList() {
     };
     console.log(data);
     axios.post("http://localhost:8080/pos/api/addtransaction", data).then(() => {
-      console.log("data");
-      alert(data.total_pay);
+      //console.log("data");
+      alert(`Pembayaran berhasil 
+    Harga: ${data.total_amount}
+    Pembayaran: ${data.total_pay}`);
       reset();
     })
       .catch((error) => {

@@ -1,7 +1,8 @@
-import { useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { useEffect, useState } from "react";
+
 
 
 function DetailTransaksi() {
@@ -9,11 +10,11 @@ function DetailTransaksi() {
     const { state } = useLocation();
     console.log(state);
     let transaksi=state;
-    //let { paramId } = useParams();
+    let { paramId } = useParams();
     //const dispatch = useDispatch(); 
     const [dataState, setDataState] = useState([]);
     useEffect(() => {
-        axios.get(`http://localhost:8080/pos/api/listtransaksidetail/${transaksi.id}`).then((response) => {
+        axios.get(`http://localhost:8080/pos/api/listtransaksidetail/${paramId}`).then((response) => {
             console.log(response.data);
             setDataState(response.data);
         }).catch((error) => { console.log(error); });
@@ -38,7 +39,15 @@ function DetailTransaksi() {
         
         <div className="flex flex-col">
             <div className="flex flex-col justify-start text-left">
+                <div className="flex flex-row justify-between">
             <h1>Detail Transaksi</h1>
+                    <Link to="/transaksi">
+                        <button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2">
+                            Kembali
+                        </button>
+                    </Link>
+                    </div>
+
             <div className="flex flex-col border-t-2 gap-4">
                 <table>
             <tr>

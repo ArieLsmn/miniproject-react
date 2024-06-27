@@ -20,7 +20,12 @@ function DetailKategori() {
 
     return (
         <div className="text-left">
-        <h1>Detail Produk</h1>
+        <h1>Detail Kategori</h1>
+        <Link to="/listkategori">
+                <button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2">
+                    Kembali
+                </button>
+            </Link>
         <div className="flex flex-row justify-between border-t-2">
 
             <div className="flex flex-col">
@@ -34,7 +39,7 @@ function DetailKategori() {
                             <td>Nama:</td> <td>{dataState.name}</td>
                         </tr>
                         <tr>
-                            <td>Jumlah Produk:</td> <td>{0}</td>
+                            <td>Jumlah Produk:</td> <td>{dataState.product_count}</td>
                         </tr>
                     </table>
                 </div>

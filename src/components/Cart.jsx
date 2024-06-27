@@ -79,7 +79,7 @@ function Cart() {
 
   return (
     (
-      <div className="flex-col flex items-center relative bg-white dark:bg-black gap-8 p-2 text-black dark:text-white font-normal uppercase text-sm h-full border-l-2 border-black">
+      <div className="flex-col flex items-center relative bg-white dark:bg-black gap-8 p-2 text-black dark:text-white font-normal uppercase text-sm h-full border-black">
         <h1 className="text-xl font-bold">Cart</h1>
 
         <div className="flex flex-col gap-4">

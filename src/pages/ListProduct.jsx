@@ -3,8 +3,7 @@ import { useState, useEffect } from 'react'
 import 'src/App.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
-import { useDispatch, useSelector } from "react-redux"
+ 
 
 
 function ListProduct() {
@@ -17,6 +16,9 @@ function ListProduct() {
         }).catch((error) => { console.log(error); });
     }, []);
 
+    function handleDelete(id){
+        axios.delete(`http://localhost:8080/pos/api/deleteproduct/${id}`);
+    }
     const DisplayData = dataState.map(
         (info) => {
             return (
@@ -25,9 +27,13 @@ function ListProduct() {
                     <td className="p-4">{info.id}</td>
                     <td className="min-w-24">{info.title}</td>
                     <td className="min-w-24">{info.price}</td>
-                    <td className="min-w-24">{info.category_id}</td>
+                    <td className="min-w-24">{info.category_name}</td>
                     <td className="min-w-24"><Link to={`/detailproduk/${info.id}`}><button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2">Detail</button></Link>
-                        <button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2">Edit</button><button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2">Delete</button></td>
+                    <Link to={`/updateproduk/${info.id}`}><button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2">Edit</button></Link>
+                        <button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2"
+                        onClick={()=>{handleDelete(info.id)}}
+                        >Delete</button>
+                        </td>
                 </tr>
             )
         }

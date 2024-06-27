@@ -30,7 +30,7 @@ function ListTransaksi() {
                     <td className="min-w-24">{info.transaction_date}</td>
                     <td className="min-w-24">{info.total_amount}</td>
                     <td className="min-w-24">{info.total_pay}</td>
-                    <td className="min-w-24"><Link to="/transaksidetail" state={info} ><button className="bg-gray-800 text-white text-xs">Detail</button></Link></td>
+                    <td className="min-w-24"><Link to={`/transaksidetail/${info.id}`} state={info} ><button className="bg-gray-800 text-white text-xs p-2">Detail</button></Link></td>
                 </tr>
             )
         }
@@ -38,21 +38,17 @@ function ListTransaksi() {
     return (
         <>
             <div>
-
+                <div className="flex flex-row text-left justify-between">
+                <h1 className="font-bold text-2xl">Transaksi</h1>
                 <Link to="/">
-                    <button>
+                    <button className="bg-gray-800 text-white text-xs p-2">
                         To Home
                     </button>
                 </Link>
-                <div className="flex justify-center">
-
-                    <a className="text-center bg-gray-300 p-2 hover:text-white hover:bg-gray-700"
-                    >Add Product</a>
-
                 </div>
                 <div className="flex">
 
-                    <table className="table-auto bg-white my-10 mx-auto">
+                    <table className="table-auto bg-white my-10 mx-auto w-full">
                         <thead className="bg-gray-300 h-10 min-w">
                             <tr className="p-4">
                                 <th className="min-w-10">Id</th>
