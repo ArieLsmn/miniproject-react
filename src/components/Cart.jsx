@@ -79,21 +79,21 @@ function Cart() {
 
   return (
     (
-      <div className="flex-col flex items-center relative bg-white dark:bg-black gap-8 p-2 text-black dark:text-white font-normal uppercase text-sm h-full border-black">
+      <div className="flex-col flex items-center relative bg-gray-200 dark:bg-black gap-8 p-2 text-black dark:text-white font-normal uppercase text-sm h-full border-black my-2">
         <h1 className="text-xl font-bold">Cart</h1>
 
         <div className="flex flex-col gap-4">
           {cartItems.map((item) => (
 
-            <div className="flex justify-between items-center" key={item.product.id}>
+            <div className="flex justify-between items-center bg-gray-200 p-2" key={item.product.id}>
               <div className="flex gap-4">
-                <img src={item.product.image} alt={item.product.title} className="rounded-md h-24" />
-                <div className="flex flex-col">
-                  <h1 className="text-sm font-bold">{item.product.title}</h1>
-                  <p className="text-gray-600">{item.product.price - 1000}</p>
+                <img src={item.product.image} alt={item.product.title} className="rounded-md h-16 bg-white w-16" />
+                <div className="flex flex-col w-24">
+                  <h1 className="text-xs font-bold">{item.product.title}</h1>
+                  <p className="text-xs text-gray-600">{toRupiah(item.product.price - 1000)}</p>
                 </div>
               </div>
-              <div className="flex gap-4">
+              <div className="flex gap-4 mx-2">
                 <button
                   className="px-4 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
                   onClick={() => {
@@ -130,7 +130,7 @@ function Cart() {
             <div className="flex flex-col justify-between items-center">
               <h1 className="text-lg font-bold">Total: {toRupiah(totalPrice)}</h1>
               <button
-                className="px-4 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
+                className="px-4 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700 my-2"
                 onClick={() => {
                   handleClearCart()
                 }}

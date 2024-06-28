@@ -65,9 +65,9 @@ function ProductForm() {
   return (
     <>
       <h1>Form Produk</h1>
-      <Link to="/">
+      <Link to="/listproduk">
         <button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2">
-          To Home
+          Kembali
         </button>
       </Link>
       <div className="flex flex-col justify-center w-1/2 bg-white border p-4 mx-auto">
@@ -122,7 +122,7 @@ function ProductForm() {
           </div>
 
 
-          <button className="my-2" type="submit" value="submit">Submit</button>
+          <button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 my-2" type="submit" value="submit">Submit</button>
 
         </form>
       </div>

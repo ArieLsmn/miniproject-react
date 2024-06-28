@@ -42,9 +42,9 @@ function CategoryForm() {
   return (
     <>
 <h1>Form Kategori</h1>
-    <Link to="/">
+    <Link to="/listkategori">
         <button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2">
-            To Home
+            Kembali
         </button>
     </Link>
       <div className="flex flex-col justify-center w-1/2 bg-white border p-4 mx-auto">
@@ -67,7 +67,7 @@ function CategoryForm() {
           </div>
 
 
-          <button className="my-2" type="submit" value="submit">Submit</button>
+          <button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 my-2" type="submit" value="submit">Submit</button>
 
         </form>
       </div>

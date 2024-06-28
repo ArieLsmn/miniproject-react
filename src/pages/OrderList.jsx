@@ -13,6 +13,9 @@ function OrderList() {
   const dispatch = useDispatch();
   const { items } = useSelector(state => state.cart);
   const [payState, setPayState] = useState(0);
+const [payButtonState,setPayButtonState] = useState(true);
+
+
 
   let cartItems = items;
   console.log(cartItems);
@@ -90,7 +93,10 @@ function OrderList() {
     }
   }
 
-
+  useEffect(() => {
+    if(payState<totalPrice) setPayButtonState(true);
+    else setPayButtonState(false);
+  },[payState]);
 
 
   return (
@@ -154,21 +160,15 @@ function OrderList() {
           <input className="border-2 border-black" type="number" id="payment" name="payment" onChange={e => onPayChange(e.target.value)}></input>
           Kembalian: {(payState>totalPrice) ?(payState-totalPrice):0}
           
-          <button className="px-4 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
+          <button className={`px-4 py-2 text-white text-xs font-bold uppercase rounded ${(payButtonState) ?"bg-gray-500": "hover:bg-gray-700 bg-gray-800 focus:outline-none focus:bg-gray-700"}`}
+          disabled={payButtonState}
           onClick={()=>{onSubmitForm()}}
-          >Buat Pesanan</button>
+          >Buat Pesanan
+          </button>
         </div>
       </div>
     )
   )
 }
 
-const mapStateToProps = state => ({
-  cart: state.cart
-});
-
-/*export default connect(
-  mapStateToProps,
-  {clearCart,updateItem}
-)(Cart);*/
 export default OrderList;

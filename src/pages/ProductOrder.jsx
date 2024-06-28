@@ -13,9 +13,14 @@ function ProductOrder() {
   const [filterState, setFilter] = useState(0);
   const [sortState, setSort] = useState("id");
   const [searchState, setSearch] = useState("");
+  const [catData,setCategory]=useState([]);
   const dispatch = useDispatch();
   const { items } = useSelector(state => state.cart);
   useEffect(() => {
+    axios.get(`http://localhost:8080/pos/api/listcategory`).then((response) => {
+      setCategory(response.data);
+    });
+
     axios.get(`http://localhost:8080/pos/api/listproduct?sort_by=${sortState}&sort_order=asc&title=${searchState}`).then((response) => {
       console.log(response.data);
       setDataState(response.data);
@@ -58,6 +63,15 @@ function ProductOrder() {
     }
 
   }
+  const DisplayOption = catData.map(
+    (info) => {
+      return (
+      <button className="px-2 py-2 border-x-2 border-black text-xs font-bold uppercase hover:bg-gray-700 hover:text-white  focus:outline-none focus:bg-gray-700"
+        onClick={() => { setFilter(info.id) }}>{info.name}</button>
+
+      )
+    }
+  );
 
   return (
     <div className="flex flex-row relative">
@@ -95,16 +109,10 @@ function ProductOrder() {
           })}
         </div>
         <div>
-          <button className="px-4 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
-            onClick={() => { setFilter(0) }}>All</button>
-          <button className="px-4 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
-            onClick={() => { setFilter(1) }}>Smartphone</button>
-          <button className="px-4 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
-            onClick={() => { setFilter(2) }}>Computers</button>
-          <button className="px-4 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
-            onClick={() => { setFilter(3) }}>Accessories</button>
-          <button className="px-4 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
-            onClick={() => { setFilter(7) }}>Others</button>
+        <button className="px-2 py-2 border-x-2 border-black text-xs font-bold uppercase hover:bg-gray-700 hover:text-white  focus:outline-none focus:bg-gray-700"
+        onClick={() => { setFilter(0) }}>All</button>
+          {DisplayOption}
+           
         </div>
       </div>
       <div className="flex relative h-full inset-y-0 right-0 justify-end">

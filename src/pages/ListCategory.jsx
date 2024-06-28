@@ -13,14 +13,28 @@ function ListCategory() {
     const [dataState, setDataState] = useState([]);
     const [rerenderState, setRerender] = useState(false);
     useEffect(() => {
-        axios.get('http://localhost:8080/pos/api/listcategory').then((response) => {
-            console.log(response.data);
-            setDataState(response.data);
-        }).catch((error) => { console.log(error); });
+        getData();
     }, []);
 
+function getData(){
+    axios.get('http://localhost:8080/pos/api/listcategory').then((response) => {
+        //console.log(response.data);
+        setDataState(response.data);
+    }).catch((error) => { console.log(error); });
+}
+
     function handleDelete(id){
-        axios.delete(`http://localhost:8080/pos/api/deletecategory/${id}`);
+        if (confirm('Confirm delete?')) {
+            // Save it!
+            //console.log('Thing was saved to the database.');
+        axios.delete(`http://localhost:8080/pos/api/deletecategory/${id}`).then((response) => {
+            //console.log(response.data);
+            if(response.data.status='FORBIDDEN') alert("Data cant be deleted");
+            getData();
+            
+        }).catch((error) => { console.log(error); });
+    }else{}
+    
     }
 
 

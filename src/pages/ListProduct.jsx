@@ -10,15 +10,31 @@ function ListProduct() {
 
     const [dataState, setDataState] = useState([]);
     useEffect(() => {
+        getData();
+    }, []);
+
+    function getData(){
         axios.get('http://localhost:8080/pos/api/listproduct').then((response) => {
             console.log(response.data);
             setDataState(response.data);
         }).catch((error) => { console.log(error); });
-    }, []);
-
-    function handleDelete(id){
-        axios.delete(`http://localhost:8080/pos/api/deleteproduct/${id}`);
     }
+    function handleDelete(id){
+        if (confirm('Confirm delete?')) {
+            // Save it!
+            console.log('Thing was saved to the database.');
+
+        axios.delete(`http://localhost:8080/pos/api/deleteproduct/${id}`).then((response) => {
+            //console.log(response.data);
+            if(response.data.status=='FORBIDDEN') alert("Data cant be deleted");
+            getData();
+        }).catch((error) => { console.log(error); });          
+    } else {
+            // Do nothing!
+            //console.log('Thing was not saved to the database.');
+          }
+    }
+
     const DisplayData = dataState.map(
         (info) => {
             return (
