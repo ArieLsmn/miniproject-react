@@ -18,7 +18,7 @@ function Cart() {
   if (cartItems !== undefined && cartItems.length > 0) {
     cartItems.forEach(element => {
       //let disc = element.product.discount;
-      totalPrice += (element.product.price - 1000) * element.quantity;
+      totalPrice += (element.product.price) * element.quantity;
     });
   }
   //console.log(totalPrice);
@@ -58,7 +58,7 @@ function Cart() {
                 <img src={item.product.image} alt={item.product.title} className="rounded-md h-16 bg-white w-16" />
                 <div className="flex flex-col w-24">
                   <h1 className="text-xs font-bold">{item.product.title}</h1>
-                  <p className="text-xs text-gray-600">{toRupiah(item.product.price - 1000)}</p>
+                  <p className="text-xs text-gray-600">{toRupiah(item.product.price)}</p>
                 </div>
               </div>
               <div className="flex gap-4 mx-2">

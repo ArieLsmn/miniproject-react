@@ -23,7 +23,7 @@ const [payButtonState,setPayButtonState] = useState(true);
   if (cartItems !== undefined && cartItems.length > 0) {
     cartItems.forEach(element => {
       //let disc = element.product.discount;
-      totalPrice += (element.product.price - 1000) * element.quantity;
+      totalPrice += (element.product.price) * element.quantity;
     });
   }
 
@@ -35,7 +35,7 @@ const [payButtonState,setPayButtonState] = useState(true);
     {
       product_id:element.product.id,
       quantity:element.quantity,
-      subtotal:element.quantity*(element.product.price-1000)
+      subtotal:element.quantity*(element.product.price)
     };
     orders.push(order);
   });
@@ -68,7 +68,7 @@ const [payButtonState,setPayButtonState] = useState(true);
     setPayState(value);
   }
   function handleUpdateItem(product, qty) {
-    let cart = cartData;
+    let cart = cartItems;
     const item = cart.find(it => it.id == product.id);
     const prevQuantity = item ? item.quantity : 0;
     if (qty === 0) {//utk remove
@@ -79,14 +79,14 @@ const [payButtonState,setPayButtonState] = useState(true);
 
     } else {
       if (prevQuantity == 0) {
-        dispatch(addItem({
+        dispatch(updateItem({
           product: product,
           quantity: prevQuantity + qty
         }));
 
 
       } else {
-        dispatch(addItem({
+        dispatch(updateItem({
           product: product,
           quantity: prevQuantity + qty
         }));
@@ -104,10 +104,10 @@ const [payButtonState,setPayButtonState] = useState(true);
   return (
     (
       <div className="flex flex-row justify-between">
-        <div className="flex-col flex items-center relative bg-gray-200 dark:bg-black gap-8 p-2 text-black dark:text-white font-normal uppercase text-sm h-full">
+        <div className="flex-col flex relative dark:bg-black gap-8 p-2 text-black dark:text-white font-normal uppercase text-sm h-full">
           <h1 className="text-xl font-bold">Cart</h1>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 items-center">
             {cartItems.map((item) => (
 
               <div className="flex justify-between items-center" key={item.product.id}>
@@ -115,7 +115,7 @@ const [payButtonState,setPayButtonState] = useState(true);
                   <img src={item.product.image} alt={item.product.title} className="rounded-md h-24" />
                   <div className="flex flex-col">
                     <h1 className="text-sm font-bold">{item.product.title}</h1>
-                    <p className="text-gray-600">{toRupiah(item.product.price - 1000) }</p>
+                    <p className="text-gray-600">{toRupiah(item.product.price) }</p>
                   </div>
                 </div>
                 <div className="flex gap-4">

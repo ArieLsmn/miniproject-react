@@ -6,10 +6,7 @@ import { useEffect, useState } from "react";
 
 function DetailKategori() {
     let { paramId } = useParams();
-    //const { state } = useLocation();
-
-    //let { paramId } = useParams();
-    //const dispatch = useDispatch(); 
+ 
     const [dataState, setDataState] = useState([]);
     useEffect(() => {
         axios.get(`http://localhost:8080/pos/api/category/${paramId}`).then((response) => {

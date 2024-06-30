@@ -4,23 +4,12 @@ import toRupiah from "./ToRupiah";
 import { CartContext } from './CartContext';
 import { Link } from "react-router-dom";
 
-//const { cartItems, addToCart } = useContext(CartContext);
-
-/*function discountPrice(price,discount){
-return (
-<>
-<h2 className="text-sm font-semibold text-red-500">{toRupiah(price - discount - 1000)}</h2>
-<h3 className="text-gray-500 line-through text-sm">{toRupiah(price - 1000)}</h3>
-
-</>
-);
-};*/
 
 function normalPrice(price) {
 
    return (
       <>
-         <h2 className="text-sm font-semibold">{toRupiah(price - 1000)}</h2>
+         <h2 className="text-sm font-semibold">{toRupiah(price)}</h2>
          <br></br>
       </>
    );

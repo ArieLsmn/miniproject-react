@@ -6,10 +6,7 @@ import { useEffect, useState } from "react";
 
 function DetailProduk() {
     let { paramId } = useParams();
-    //const { state } = useLocation();
-
-    //let { paramId } = useParams();
-    //const dispatch = useDispatch(); 
+ 
     const [dataState, setDataState] = useState([]);
     useEffect(() => {
         axios.get(`http://localhost:8080/pos/api/detailproduct/${paramId}`).then((response) => {
@@ -29,7 +26,6 @@ function DetailProduk() {
             <div className="flex flex-row justify-between border-t-2">
 
                 <div className="flex flex-col">
-
 
                     <div className="flex flex-col gap-4 text-left">
                         <table>
