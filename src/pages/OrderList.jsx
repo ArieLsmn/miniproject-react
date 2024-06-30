@@ -102,7 +102,7 @@ function OrderList() {
           <div className="flex flex-col gap-4 items-center">
             {cartItems.map((item) => (
 
-              <div className="flex justify-between items-center w-3/5" key={item.product.id}>
+              <div className="flex justify-between items-center w-4/5" key={item.product.id}>
                 <div className="flex gap-4">
                   <img src={item.product.image} alt={item.product.title} className="rounded-md h-24 w-28" />
                   <div className="flex flex-col">
