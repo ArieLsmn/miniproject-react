@@ -1,4 +1,4 @@
-import { useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { useEffect, useState } from "react";
@@ -17,12 +17,14 @@ function DetailKategori() {
 
     return (
         <div className="text-left">
+            <div className="flex flex-row justify-between">
         <h1>Detail Kategori</h1>
         <Link to="/listkategori">
                 <button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2">
                     Kembali
                 </button>
             </Link>
+            </div>
         <div className="flex flex-row justify-between border-t-2">
 
             <div className="flex flex-col">

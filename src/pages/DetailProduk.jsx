@@ -17,12 +17,14 @@ function DetailProduk() {
 
     return (
         <div className="text-left">
+            <div className="flex flex-row justify-between">
             <h1>Detail Produk</h1>
             <Link to="/listproduk">
                 <button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2">
                     Kembali
                 </button>
             </Link>
+            </div>
             <div className="flex flex-row justify-between border-t-2">
 
                 <div className="flex flex-col">
