@@ -55,7 +55,9 @@ const [payButtonState,setPayButtonState] = useState(true);
       alert(`Pembayaran berhasil 
     Harga: ${data.total_amount}
     Pembayaran: ${data.total_pay}`);
+    dispatch(clearCart()); 
       reset();
+       
     })
       .catch((error) => {
         console.log("Error", error);
@@ -102,7 +104,7 @@ const [payButtonState,setPayButtonState] = useState(true);
   return (
     (
       <div className="flex flex-row justify-between">
-        <div className="flex-col flex items-center relative bg-white dark:bg-black gap-8 p-2 text-black dark:text-white font-normal uppercase text-sm h-full">
+        <div className="flex-col flex items-center relative bg-gray-200 dark:bg-black gap-8 p-2 text-black dark:text-white font-normal uppercase text-sm h-full">
           <h1 className="text-xl font-bold">Cart</h1>
 
           <div className="flex flex-col gap-4">

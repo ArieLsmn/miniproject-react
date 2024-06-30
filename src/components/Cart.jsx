@@ -1,10 +1,8 @@
 import axios from 'axios';
 import { useContext, useEffect } from 'react'
-//import { CartContext } from './CartContext'
 import { useReducer } from 'react'
 import { useSelector, connect, useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
-//import { updateCartItem,updateCartItemQuantity,clearCart,getCartTotal } from 'src/store/action/cartAction'
 import { clearCart, addItem, updateItem, fillCart } from 'src/store/cartSlice';
 import toRupiah from './ToRupiah';
 
@@ -14,29 +12,6 @@ function Cart() {
   const dispatch = useDispatch();
   const { items } = useSelector(state => state.cart);
 
-  //const user = useSelector(state => state.auth.user)
-  //const { data: cartData, error: error1, isLoading: load1, mutate: mutateCart } = useSWR("http://localhost:3001/cart", axiosFetch);
-  //if (load1) return <h2>Loading...</h2>;
-  //console.log(cart);
-  /*useEffect(()=>{
-
-      axios.get('http://localhost:3001/cart').then((response)=>{
-        //console.log(response.data);
-        let input=response.data;
-        let userCart=[];
-        input.forEach(element => {
-          userCart.push(element);
-        });
-        dispatch(fillCart(userCart));
-        console.log(items);
-      }).catch((error)=>{console.log(error);});
-
-
-    //console.log(userCart);
-
-  },[])*/
-  //console.log("CEK");
-  //console.log(items);
   let cartItems = items;
 
   let totalPrice = 0;
@@ -49,8 +24,6 @@ function Cart() {
   //console.log(totalPrice);
 
   function handleClearCart() {
-
-
     dispatch(clearCart());
   }
 
@@ -66,22 +39,17 @@ function Cart() {
       }));
 
     } else {
-
-     
-        dispatch(updateItem({
-          product: product,
-          quantity: prevQuantity + qty
-        }));
-
-      }
-    
+      dispatch(updateItem({
+        product: product,
+        quantity: prevQuantity + qty
+      }));
+    }
   }
 
   return (
     (
-      <div className="flex-col flex items-center relative bg-gray-200 dark:bg-black gap-8 p-2 text-black dark:text-white font-normal uppercase text-sm h-full border-black my-2">
+      <div className="flex-col flex items-center relative bg-gray-200 dark:bg-black gap-8 p-2 text-black dark:text-white font-normal uppercase text-sm h-full border-black my-2 justify-center w-full">
         <h1 className="text-xl font-bold">Cart</h1>
-
         <div className="flex flex-col gap-4">
           {cartItems.map((item) => (
 
@@ -138,10 +106,10 @@ function Cart() {
                 Clear cart
               </button>
               <Link to="/order">
-              <button
-                className="px-4 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700">
-                Checkout
-              </button>
+                <button
+                  className="px-4 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700">
+                  Checkout
+                </button>
               </Link>
             </div>
           ) : (

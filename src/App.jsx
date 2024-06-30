@@ -25,27 +25,27 @@ import Layout from './components/Layout'
 
 
 function App() {
-  
+
   return (
 
     <BrowserRouter>
-    <Layout>
-      <Routes>
-        
-        <Route path="/" element={<ProductOrder />} />
-        <Route path="/order" element={<OrderList />} />
-        <Route path="/transaksi" element={<ListTransaksi />} />
-        <Route path="/transaksidetail/:paramId" element={<DetailTransaksi />} />
-        <Route path="/listproduk" element={<ListProduct />} />
-        <Route path="/detailproduk/:paramId" element={<DetailProduk />} />
-        <Route path="/formproduk/" element={<ProductForm />} />
-        <Route path="/updateproduk/:paramId" element={<ProductUpdate />} />
-        <Route path="/listkategori" element={<ListCategory />} />
-        <Route path="/detailkategori/:paramId" element={<DetailKategori />} />
-        <Route path="/formkategori" element={<CategoryForm />} />
-        <Route path="/updatekategori/:paramId" element={<CategoryUpdate />} />
-        
-      </Routes>
+      <Layout>
+        <Routes>
+
+          <Route path="/" element={<ProductOrder />} />
+          <Route path="/order" element={<OrderList />} />
+          <Route path="/transaksi" element={<ListTransaksi />} />
+          <Route path="/transaksidetail/:paramId" element={<DetailTransaksi />} />
+          <Route path="/listproduk" element={<ListProduct />} />
+          <Route path="/detailproduk/:paramId" element={<DetailProduk />} />
+          <Route path="/formproduk/" element={<ProductForm />} />
+          <Route path="/updateproduk/:paramId" element={<ProductUpdate />} />
+          <Route path="/listkategori" element={<ListCategory />} />
+          <Route path="/detailkategori/:paramId" element={<DetailKategori />} />
+          <Route path="/formkategori" element={<CategoryForm />} />
+          <Route path="/updatekategori/:paramId" element={<CategoryUpdate />} />
+
+        </Routes>
       </Layout>
     </BrowserRouter>
 

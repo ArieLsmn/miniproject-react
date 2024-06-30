@@ -42,9 +42,8 @@ function ProductUpdate() {
 
   const DisplayOption = catData.map(
     (info) => {
-        return (
-          <option value={info.id}>{info.name}</option>
-        )
+      if(info.id==formData.category_id) return (<option value={info.id} selected>{info.name}</option>);
+      else return (<option value={info.id}>{info.name}</option>);
       }
     )
 
@@ -106,7 +105,8 @@ function ProductUpdate() {
               <select className='border-2 border-gray-300 p-2 w-full'
                 {...register("category_id")}
                 name="category_id"
-                id="category_id">
+                id="category_id"
+                defaultValue={formData.category_id}>
                   {DisplayOption}
               </select>
               <p className="text-red-500">{errors.category?.message}</p>
@@ -125,7 +125,7 @@ function ProductUpdate() {
           </div>
 
 
-          <button className="my-2" type="submit" value="submit">Submit</button>
+          <button className="bg-gray-800 my-2 text-white text-xs p-2 hover:text-white hover:bg-gray-700" type="submit" value="submit">Submit</button>
 
         </form>
       </div>

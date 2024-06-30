@@ -29,10 +29,10 @@ function normalPrice(price) {
 const ProductCard = ({ product, addProduct }) => {
 
    return (
-      <div className="flex flex-col border rounded-lg m-1 bg-gray-200 justify-center p-4">
+      <div className="flex flex-col border rounded-lg m-1 bg-gray-200 justify-center p-4 max-w-40 h-72">
 
-         <div className="justify-center h-40 w-40 bg-white">
-            <img className="h-40 object-contain" src={product.image} />
+         <div className="justify-center h-32 w-32 bg-white">
+            <img className="h-32 object-contain" src={product.image} />
 
          </div>
          <div className="flex flex-col">

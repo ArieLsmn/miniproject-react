@@ -14,6 +14,7 @@ function ProductOrder() {
   const [sortState, setSort] = useState("id");
   const [searchState, setSearch] = useState("");
   const [catData,setCategory]=useState([]);
+  const [pageState,setPage]=useState(1);
   const dispatch = useDispatch();
   const { items } = useSelector(state => state.cart);
   useEffect(() => {
@@ -32,6 +33,27 @@ function ProductOrder() {
     data = dataState.filter((e) => e.category_id == filterState);
   else data = dataState;
 
+  let itemPerPage=8;
+  const lastIdx = pageState * itemPerPage;
+  const firstIdx = lastIdx - itemPerPage;
+  const currData = data.slice(firstIdx,lastIdx);
+
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(data.length / itemPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  const renderPageNumbers = pageNumbers.map(number => {
+    return (
+      <li className="bg-sky-950 p-2 text-white hover:cursor-pointer"
+        key={number}
+        id={number}
+        onClick={()=>{setPage(number)}}
+      >
+        {number}
+      </li>
+    );
+  });
 
   function handleSearch(value) {
     setSearch(value);
@@ -76,8 +98,8 @@ function ProductOrder() {
   return (
     <div className="flex flex-row relative">
 
-      <div className="container flex flex-col justify-center h-fit relative w-3/5">
-        <div className="flex flex-row">
+      <div className="container flex flex-col justify-center h-fit relative w-4/5 pl-8">
+        <div className="flex flex-row justify-center">
           <select className='border-2 border-gray-300 p-2 w-1/5'
             name="sort"
             id="sort"
@@ -97,9 +119,14 @@ function ProductOrder() {
           />
 
         </div>
-        <div className="flex flex-col lg:flex-wrap lg:flex-row place-content-center justify-start my-5">
+        <div className="mt-4 mx-0">
+        <button className="p-2 border-x-2 border-black text-xs font-bold uppercase hover:bg-gray-700 hover:text-white focus:outline-none focus:bg-gray-700"
+        onClick={() => { setFilter(0) }}>All</button>
+          {DisplayOption}
+        </div>
+        <div className="flex flex-col lg:flex-wrap lg:flex-row place-content-center justify-center my-2">
 
-          {data.map((element) => {
+          {currData.map((element) => {
 
             return (
               <div className="my-5">
@@ -108,14 +135,11 @@ function ProductOrder() {
             );
           })}
         </div>
-        <div>
-        <button className="px-2 py-2 border-x-2 border-black text-xs font-bold uppercase hover:bg-gray-700 hover:text-white  focus:outline-none focus:bg-gray-700"
-        onClick={() => { setFilter(0) }}>All</button>
-          {DisplayOption}
-           
-        </div>
+        <ul className="flex flex-row gap-4 justify-center">
+        {renderPageNumbers}
+        </ul>
       </div>
-      <div className="flex relative h-full inset-y-0 right-0 justify-end">
+      <div className="flex relative h-full inset-y-0 right-0 justify-center mx-auto w-1/2 pr-8">
 
         <Cart />
 

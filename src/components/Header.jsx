@@ -9,8 +9,6 @@ const Header = () => {
 
     return (
         <header>
-            
-
             <div className="w-full shadow-md content-center">
                 <div className="flex flex-row bg-sky-950 text-white justify-around p-4 w-full">
 
@@ -26,7 +24,6 @@ const Header = () => {
                     </div>
                 </div>
             </div>
-
         </header>
     );
 };
