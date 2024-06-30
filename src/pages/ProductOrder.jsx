@@ -98,7 +98,7 @@ function ProductOrder() {
   return (
     <div className="flex flex-row relative">
 
-      <div className="container flex flex-col justify-center h-fit relative w-4/5 pl-8">
+      <div className="container flex flex-col justify-center h-fit relative w-4/5">
         <div className="flex flex-row justify-center">
           <select className='border-2 border-gray-300 p-2 w-1/5'
             name="sort"
@@ -124,22 +124,23 @@ function ProductOrder() {
         onClick={() => { setFilter(0) }}>All</button>
           {DisplayOption}
         </div>
-        <div className="flex flex-col lg:flex-wrap lg:flex-row place-content-center justify-center my-2">
-
+        <div className="flex flex-col place-content-center justify-center my-2">
+          <div className="flex flex-col justify-start lg:flex-wrap lg:flex-row px-16">
           {currData.map((element) => {
 
             return (
-              <div className="my-5">
+              <div className="my-2">
                 <ProductCard product={element} addProduct={handleAddToCart} > </ProductCard>
               </div>
             );
           })}
+          </div>
         </div>
         <ul className="flex flex-row gap-4 justify-center">
         {renderPageNumbers}
         </ul>
       </div>
-      <div className="flex relative h-full inset-y-0 right-0 justify-center mx-auto w-1/2 pr-8">
+      <div className="flex relative h-full inset-y-0 right-0 justify-center mx-auto w-1/2">
 
         <Cart />
 

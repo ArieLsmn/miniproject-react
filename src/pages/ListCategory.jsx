@@ -16,25 +16,25 @@ function ListCategory() {
         getData();
     }, []);
 
-function getData(){
-    axios.get('http://localhost:8080/pos/api/listcategory').then((response) => {
-        //console.log(response.data);
-        setDataState(response.data);
-    }).catch((error) => { console.log(error); });
-}
+    function getData() {
+        axios.get('http://localhost:8080/pos/api/listcategory').then((response) => {
+            //console.log(response.data);
+            setDataState(response.data);
+        }).catch((error) => { console.log(error); });
+    }
 
-    function handleDelete(id){
+    function handleDelete(id) {
         if (confirm('Confirm delete?')) {
             // Save it!
             //console.log('Thing was saved to the database.');
-        axios.delete(`http://localhost:8080/pos/api/deletecategory/${id}`).then((response) => {
-            //console.log(response.data);
-            if(response.data.status='FORBIDDEN') alert("Data cant be deleted");
-            getData();
-            
-        }).catch((error) => { console.log(error); });
-    }else{}
-    
+            axios.delete(`http://localhost:8080/pos/api/deletecategory/${id}`).then((response) => {
+                //console.log(response.data);
+                if (response.data.status = 'FORBIDDEN') alert("Data cant be deleted");
+                getData();
+
+            }).catch((error) => { console.log(error); });
+        } else { }
+
     }
 
 
@@ -47,13 +47,13 @@ function getData(){
                     <td className="min-w-24">{info.name}</td>
                     <td className="min-w-24">{info.product_count}</td>
                     <td className="min-w-24"><Link to={`/detailkategori/${info.id}`}><button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2">Detail</button></Link>
-                    
-                    <Link to={`/updatekategori/${info.id}`}>
-                    <button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2"
-                    >Edit</button></Link>
-                    <button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2"
-                    onClick={()=>{handleDelete(info.id)}}
-                    >Delete</button>
+
+                        <Link to={`/updatekategori/${info.id}`}>
+                            <button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2"
+                            >Edit</button></Link>
+                        <button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2"
+                            onClick={() => { handleDelete(info.id) }}
+                        >Delete</button>
                     </td>
                 </tr>
             )
@@ -64,17 +64,19 @@ function getData(){
             <div>
 
 
-            <div className="flex text-left">
-                Kategori
+                <div className="flex text-left mx-4 px-4 justify-between">
+                    <h1 className="font-bold text-2xl"> Kategori </h1>
+                    <div>
                     <Link to="/">
                         <button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2">
                             To Home
                         </button>
                     </Link>
                     <Link to="/formkategori">
-                        <a className="text-center bg-gray-300 p-2 hover:text-white hover:bg-gray-700"
-                        >Add Category</a>
+                        <button className="text-center bg-gray-300 p-2 hover:text-white hover:bg-gray-700 text-xs"
+                        >Add Category</button>
                     </Link>
+                    </div>
                 </div>
                 <div className="flex border-t-2 my-2">
 

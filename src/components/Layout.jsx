@@ -15,7 +15,7 @@ function Layout({ children }) {
       <>
         
           <Header />
-          <div className="mt-4">
+          <div className="mt-4 px-8">
           {children}
           </div>
       </>

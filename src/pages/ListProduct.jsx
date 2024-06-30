@@ -57,17 +57,19 @@ function ListProduct() {
     return (
         <>
             <div>
-                <div className="flex text-left">
-                <h1>Product</h1>
+                <div className="flex text-left mx-4 px-4 justify-between">
+                <h1 className="font-bold text-2xl">Product</h1>
+                <div>
                     <Link to="/">
                         <button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 mx-2">
                             To Home
                         </button>
                     </Link>
                     <Link to="/formproduk">
-                        <a className="text-center bg-gray-300 p-2 hover:text-white hover:bg-gray-700"
-                        >Add Product</a>
+                    <button className="text-center bg-gray-300 p-2 hover:text-white hover:bg-gray-700 text-xs"
+                        >Add Product</button>
                     </Link>
+                    </div>
                 </div>
                 <div className="flex border-t-2 my-2">
 
