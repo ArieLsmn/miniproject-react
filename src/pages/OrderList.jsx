@@ -69,23 +69,15 @@ const [payButtonState,setPayButtonState] = useState(true);
   }
   function handleUpdateItem(product, qty) {
     let cart = cartItems;
-    const item = cart.find(it => it.id == product.id);
+    const item = cart.find(it => it.product.id == product.id);
     const prevQuantity = item ? item.quantity : 0;
-    if (qty === 0) {//utk remove
+    if (qty == 0) {//utk remove
       dispatch(updateItem({
         product: product,
         quantity: 0
       }));
 
     } else {
-      if (prevQuantity == 0) {
-        dispatch(updateItem({
-          product: product,
-          quantity: prevQuantity + qty
-        }));
-
-
-      } else {
         dispatch(updateItem({
           product: product,
           quantity: prevQuantity + qty
@@ -93,7 +85,7 @@ const [payButtonState,setPayButtonState] = useState(true);
 
       }
     }
-  }
+  
 
   useEffect(() => {
     if(payState<totalPrice) setPayButtonState(true);
@@ -103,10 +95,10 @@ const [payButtonState,setPayButtonState] = useState(true);
 
   return (
     (
-      <div className="flex flex-row justify-between">
-        <div className="flex-col flex relative dark:bg-black gap-8 p-2 text-black dark:text-white font-normal uppercase text-sm h-full">
-          <h1 className="text-xl font-bold">Cart</h1>
-
+      <div className="flex flex-row justify-between px-4">
+        
+        <div className="flex flex-col dark:bg-black gap-8 p-2 text-black dark:text-white font-normal uppercase text-sm h-full">
+        <h1 className="text-xl uppercase font-bold">Cart</h1>
           <div className="flex flex-col gap-4 items-center">
             {cartItems.map((item) => (
 
