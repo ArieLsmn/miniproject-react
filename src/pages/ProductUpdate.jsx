@@ -32,18 +32,20 @@ function ProductUpdate() {
     });
     axios.get(`http://localhost:8080/pos/api/detailproduct/${paramId}`).then((response) => {
       console.log(response.data);
-      setFormData(response.data);
-      setValue(title,formData.title);
-      setValue(price,formData.price);
-      setValue(category_id,formData.category_id);
-      setValue(image,formData.image);
+      let data=response.data;
+      setFormData(data);
+      setValue("title",data.title);
+      setValue("price",data.price);
+      setValue("category_id",data.category_id);
+      setValue("image",data.image);
     }).catch((error) => { console.log(error); });
   }, []);
 
   const DisplayOption = catData.map(
     (info) => {
       if(info.id==formData.category_id) return (<option value={info.id} selected>{info.name}</option>);
-      else return (<option value={info.id}>{info.name}</option>);
+      else 
+      return (<option value={info.id}>{info.name}</option>);
       }
     )
 
@@ -84,7 +86,7 @@ function ProductUpdate() {
                 name="title"
                 id="title"
                 type="text"
-                defaultValue={formData.title}
+                //defaultValue={formData.title}
 
               />
               <p className="text-red-500">{errors.title?.message}</p>
@@ -96,7 +98,7 @@ function ProductUpdate() {
                 name="price"
                 id="price"
                 type="number"
-                defaultValue={formData.price}
+                //defaultValue={formData.price}
               />
               <p className="text-red-500">{errors.price?.message}</p>
             </div>
@@ -106,7 +108,8 @@ function ProductUpdate() {
                 {...register("category_id")}
                 name="category_id"
                 id="category_id"
-                defaultValue={formData.category_id}>
+                //defaultValue={formData.category_id}
+                >
                   {DisplayOption}
               </select>
               <p className="text-red-500">{errors.category?.message}</p>
@@ -119,7 +122,7 @@ function ProductUpdate() {
                 name="image"
                 id="image"
                 type="text"
-                defaultValue={formData.image}
+                //defaultValue={formData.image}
               />
             </div>
           </div>

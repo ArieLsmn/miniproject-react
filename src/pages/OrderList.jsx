@@ -6,6 +6,7 @@ import { useSelector, connect, useDispatch } from "react-redux";
 //import { updateCartItem,updateCartItemQuantity,clearCart,getCartTotal } from 'src/store/action/cartAction'
 import { clearCart, addItem, updateItem, fillCart } from 'src/store/cartSlice';
 import toRupiah from '../components/ToRupiah';
+import { useNavigate } from 'react-router-dom';
 
 
 function OrderList() {
@@ -14,8 +15,7 @@ function OrderList() {
   const { items } = useSelector(state => state.cart);
   const [payState, setPayState] = useState(0);
   const [payButtonState, setPayButtonState] = useState(true);
-
-
+  const navigate =useNavigate();
 
   let cartItems = items;
   console.log(cartItems);
@@ -44,7 +44,7 @@ function OrderList() {
     let today = new Date().toJSON().slice(0, 10);
     let data =
     {
-      transaction_date: today,
+      //transaction_date: today,
       total_amount: totalPrice,
       total_pay: parseInt(payState),
       transaction_details: orders
@@ -56,7 +56,8 @@ function OrderList() {
     Harga: ${data.total_amount}
     Pembayaran: ${data.total_pay}`);
       dispatch(clearCart());
-      reset();
+      //reset();
+      navigate("/");
 
     })
       .catch((error) => {
@@ -154,7 +155,7 @@ function OrderList() {
           <input className="border-2 border-black" type="number" id="payment" name="payment" step="1000" onChange={e => onPayChange(e.target.value)}></input>
           Kembalian: {(payState > totalPrice) ? (payState - totalPrice) : 0}
 
-          <button className={`px-4 py-2 text-white text-xs font-bold uppercase rounded ${(payButtonState) ? "bg-gray-500" : "hover:bg-gray-700 bg-gray-800 focus:outline-none focus:bg-gray-700"}`}
+          <button className={`px-4 py-2 text-white text-xs font-bold uppercase rounded ${(payButtonState) ? "bg-gray-500" : "hover:bg-gray-700 bg-sky-950 focus:outline-none focus:bg-gray-700"}`}
             disabled={payButtonState}
             onClick={() => { onSubmitForm() }}
           >Buat Pesanan

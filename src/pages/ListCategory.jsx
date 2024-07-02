@@ -11,7 +11,7 @@ import { data } from 'autoprefixer';
 function ListCategory() {
 
     const [dataState, setDataState] = useState([]);
-    const [rerenderState, setRerender] = useState(false);
+    //const [rerenderState, setRerender] = useState(false);
     useEffect(() => {
         getData();
     }, []);

@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 function DetailTransaksi() {
 
     const { state } = useLocation();
-    console.log(state);
+    //console.log(state);
     let transaksi=state;
     let { paramId } = useParams();
     //const dispatch = useDispatch(); 

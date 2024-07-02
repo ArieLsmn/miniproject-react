@@ -98,7 +98,7 @@ function Cart() {
             <div className="flex flex-col justify-between items-center">
               <h1 className="text-lg font-bold">Total: {toRupiah(totalPrice)}</h1>
               <button
-                className="px-4 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700 my-2"
+                className="px-4 py-2 bg-sky-950 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700 my-2"
                 onClick={() => {
                   handleClearCart()
                 }}
@@ -107,7 +107,7 @@ function Cart() {
               </button>
               <Link to="/order">
                 <button
-                  className="px-4 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700">
+                  className="px-4 py-2 bg-red-500 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700">
                   Checkout
                 </button>
               </Link>

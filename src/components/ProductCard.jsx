@@ -32,7 +32,7 @@ const ProductCard = ({ product, addProduct }) => {
             </div>
 
             <div className="mt-4">
-               <a className="bg-red-500 text-center text-gray-100 p-2 hover:text-white hover:bg-gray-700 hover:cursor-pointer"
+               <a className="bg-red-500 text-center text-gray-100 p-2 hover:text-white hover:bg-gray-700 hover:cursor-pointer font-semibold"
                   onClick={() => addProduct(product)}>Add to Cart</a>
             </div>
          </div>

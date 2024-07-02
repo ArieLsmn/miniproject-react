@@ -11,8 +11,8 @@ import { useDispatch, useSelector } from "react-redux"
 
 
 function ListTransaksi() {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+    //const dispatch = useDispatch();
+    //const navigate = useNavigate();
     const [dataState, setDataState] = useState([]);
     useEffect(() => {
         axios.get('http://localhost:8080/pos/api/listtransaksi').then((response) => {
@@ -30,7 +30,8 @@ function ListTransaksi() {
                     <td className="min-w-24">{info.transaction_date}</td>
                     <td className="min-w-24">{info.total_amount}</td>
                     <td className="min-w-24">{info.total_pay}</td>
-                    <td className="min-w-24"><Link to={`/transaksidetail/${info.id}`} state={info} ><button className="bg-gray-800 text-white text-xs p-2">Detail</button></Link></td>
+                    <td className="min-w-24"><Link to={`/transaksidetail/${info.id}`} state={info} >
+                    <button className="bg-gray-800 text-white text-xs p-2">Detail</button></Link></td>
                 </tr>
             )
         }

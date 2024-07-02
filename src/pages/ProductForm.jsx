@@ -116,14 +116,11 @@ function ProductForm() {
                 name="image"
                 id="image"
                 type="text"
-
               />
+              <p className="text-red-500">{errors.image?.message}</p>
             </div>
           </div>
-
-
           <button className="bg-gray-800 text-white text-xs p-2 hover:text-white hover:bg-gray-700 my-2" type="submit" value="submit">Submit</button>
-
         </form>
       </div>
     </>

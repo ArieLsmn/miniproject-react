@@ -29,7 +29,7 @@ function CategoryUpdate() {
     axios.get(`http://localhost:8080/pos/api/category/${paramId}`).then((response) => {
       console.log(response.data);
       setFormData(response.data);
-      setValue(name,response.data.name);
+      setValue("name",response.data.name);
     }).catch((error) => { console.log(error); });
   }, []);
 

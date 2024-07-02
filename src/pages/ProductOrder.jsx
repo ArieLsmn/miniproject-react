@@ -8,19 +8,23 @@ import { addItem } from 'src/store/cartSlice'
 
 
 function ProductOrder() {
-  const [count, setCount] = useState(0);
+  ///const [count, setCount] = useState(0);
   const [dataState, setDataState] = useState([]);
+  const [catData,setCategory]=useState([]);
   const [filterState, setFilter] = useState(0);
   const [sortState, setSort] = useState("id");
   const [searchState, setSearch] = useState("");
-  const [catData,setCategory]=useState([]);
+  
   const [pageState,setPage]=useState(1);
   const dispatch = useDispatch();
   const { items } = useSelector(state => state.cart);
-  useEffect(() => {
+
+  useEffect(()=>{
     axios.get(`http://localhost:8080/pos/api/listcategory`).then((response) => {
       setCategory(response.data);
     });
+  },[]);
+  useEffect(() => {
 
     axios.get(`http://localhost:8080/pos/api/listproduct?sort_by=${sortState}&sort_order=asc&title=${searchState}`).then((response) => {
       console.log(response.data);
@@ -63,32 +67,27 @@ function ProductOrder() {
   const handleAddToCart = (product) => {
     let cart = items;
     //console.log(cartData);
-    const item = cart.find(it => it.id == product.id);
+    const item = cart.find(it => it.product.id == product.id);
     const prevQuantity = item ? item.quantity : 0;
     //console.log(item);
     if (prevQuantity == 0) {
-
       dispatch(addItem({
         product: product,
-        quantity: prevQuantity + 1
+        quantity: 1
       }));
-
     }
-
     else {
-
       dispatch(addItem({
         product: product,
         quantity: prevQuantity + 1
       }));
-
     }
 
   }
   const DisplayOption = catData.map(
     (info) => {
       return (
-      <button className="px-2 py-2 border-x-2 border-black text-xs font-bold uppercase hover:bg-gray-700 hover:text-white  focus:outline-none focus:bg-gray-700"
+      <button className="px-2 py-2 border-x-2 border-gray-200 text-xs font-bold uppercase hover:bg-gray-700 hover:text-white  focus:outline-none focus:bg-gray-700"
         onClick={() => { setFilter(info.id) }}>{info.name}</button>
 
       )
@@ -97,7 +96,6 @@ function ProductOrder() {
 
   return (
     <div className="flex flex-row relative">
-
       <div className="container flex flex-col justify-center h-fit relative w-4/5">
         <div className="flex flex-row justify-center">
           <select className='border-2 border-gray-300 p-2 w-1/5'
@@ -120,7 +118,7 @@ function ProductOrder() {
 
         </div>
         <div className="mt-4 mx-0">
-        <button className="p-2 border-x-2 border-black text-xs font-bold uppercase hover:bg-gray-700 hover:text-white focus:outline-none focus:bg-gray-700"
+        <button className="p-2 border-x-2 border-gray-200 text-xs font-bold uppercase hover:bg-gray-700 hover:text-white focus:outline-none focus:bg-gray-700"
         onClick={() => { setFilter(0) }}>All</button>
           {DisplayOption}
         </div>
@@ -129,7 +127,7 @@ function ProductOrder() {
           {currData.map((element) => {
 
             return (
-              <div className="my-2">
+              <div className="my-2" key={element.id}>
                 <ProductCard product={element} addProduct={handleAddToCart} > </ProductCard>
               </div>
             );

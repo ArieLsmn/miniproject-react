@@ -15,10 +15,6 @@ const cartSlice = createSlice({
 
         clearCart:(state)=>{
             
-            /*state.items.forEach(element => {
-                if(element.userId==action.payload)
-                axios.delete(`http://localhost:3001/cart/${element.id}`);
-              });*/
             state.items = [];
         },
         fillCart:(state,action)=>{
@@ -47,8 +43,8 @@ const cartSlice = createSlice({
         updateItem: (state,action) => {
             const quantity = action.payload.quantity;
             const product = action.payload.product;
-            console.log("SLICER PAYLOD");
-            console.log(action.payload);
+            //console.log("SLICER PAYLOD");
+            //console.log(action.payload);
             if (quantity === 0) {
                 const items = state.items.filter(it => it.product.id !== product.id);
                 state.items= items;

@@ -22,7 +22,7 @@ function ListProduct() {
     function handleDelete(id){
         if (confirm('Confirm delete?')) {
             // Save it!
-            console.log('Thing was saved to the database.');
+            //console.log('Thing was saved to the database.');
 
         axios.delete(`http://localhost:8080/pos/api/deleteproduct/${id}`).then((response) => {
             //console.log(response.data);
